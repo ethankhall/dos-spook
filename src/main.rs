@@ -15,6 +15,8 @@ lazy_static! {
 
 fn main() {
 
+    print!("{}[2J", 27 as char);
+
     let mut rng = rand::thread_rng();
 
     let mut known_commands = HashSet::new();
@@ -35,19 +37,24 @@ fn main() {
         let readline = rl.readline("B:\\>");
         match readline {
             Ok(line) => {
-                let line = line.as_str();
+                if line.is_empty() {
+                    continue;
+                }
+                let line = line.as_str().trim();
+                let lines: Vec<String> = line.split_ascii_whitespace().map(|x| x.to_owned()).collect();
+                let command = lines.first().unwrap().to_owned();
                 rl.add_history_entry(line);
                 if line.trim() == "hal9000" {
                     break;
-                } else if CHANGE_DIR.is_match(line) {
-                    println!("Not ready reading drive {}", line.chars().next().unwrap());
+                } else if CHANGE_DIR.is_match(&command) {
+                    println!("Not ready reading drive {}", command.chars().next().unwrap());
                     abort_retry_fail(&mut rl);
-                } else if line.trim() == "help" {
+                } else if command == "help" {
                     for cmd in cmds::COMMANDS {
                         println!("{}", cmd);
                         std::thread::sleep(std::time::Duration::from_millis(2));
                     }
-                } else if known_commands.contains(line.trim()) {
+                } else if known_commands.contains(&command) {
                     println!();
                     println!("{}", errors.clone().into_iter().choose(&mut rng).unwrap());
                 } else {
@@ -60,9 +67,8 @@ fn main() {
             Err(ReadlineError::Eof) => {
                 print!("^D ");
             },
-            Err(err) => {
-                println!("Error: {:?}", err);
-                break
+            Err(_) => {
+                println!("Error");
             }
         }
     }
