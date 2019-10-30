@@ -1,0 +1,11 @@
+[package]
+name = "dos-spook"
+version = "0.1.0"
+authors = ["Ethan Hall <ethan@ehdev.io>"]
+edition = "2018"
+
+[dependencies]
+rustyline = "5"
+regex = "1"
+lazy_static = "1.4.0"
+rand = "*"

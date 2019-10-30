@@ -1,0 +1,21 @@
+pub const ERRORS: &'static [&'static str] = &[
+    "PC LOAD LETTER",
+    "Disconnected from server\nConnection Failed\nOOPS: child died",
+    "Where did you learn to type?",
+    "Are you on drugs?",
+    "You type like I drive.",
+    "stty: unknown mode: doofus",
+    "It can only be attributed to human error.",
+    "What, what, what, what, what, what, what, what, what, what?",
+    "You do that again and see what happens...",
+    "Speak English you fool --- there are no subtitles in this scene.",
+    "My pet ferret can type better than you!",
+    "Maybe if you used more than just two fingers...",
+    "I've seen penguins that can type better than that.",
+    "I'm sorry Dave, I'm afraid I can't let you do that.",
+    "ERROR: Root device mounted successfully, but /sbin/init does not exist.\nBailing out, you are on your own. Good luck!",
+    "No /dev nodes. What kind of mutant ninja machine is this?",
+    "lp0 on fire",
+    "WARNING: Duplicate port number(s) specified. Are you alert enough to be using Nmap? Have some coffee or Jolt(tm).",
+    "You don't exist, go away."
+];
